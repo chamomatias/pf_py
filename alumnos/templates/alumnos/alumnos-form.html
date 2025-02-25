@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="mt-4">{% if object %}Editar alumno{% else %}Crear alumno{% endif %}</h2>
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+  <a class="btn btn-secondary mt-3" href="{% url 'alumnos-listar' %}">Volver a la lista</a>
+{% endblock %}
