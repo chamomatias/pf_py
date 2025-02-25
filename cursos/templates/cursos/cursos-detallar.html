@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Detalle del Curso</h2>
+  <p><strong>ID:</strong> {{ object.id }}</p>
+  <p><strong>Nombre:</strong> {{ object.nombre }}</p>
+  <p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+  <p><strong>Fecha de Inicio:</strong> {{ object.fecha_inicio }}</p>
+  <p><strong>Duración (semanas):</strong> {{ object.duracion_semanas }}</p>
+  <br>
+  <a href="{% url 'cursos-actualizar' object.id %}">Actualizar</a> |
+  <a href="{% url 'cursos-borrar' object.id %}">Borrar</a>
+  <br><br>
+  <a href="{% url 'cursos-listar' %}">Volver a la lista</a>
+{% endblock %}

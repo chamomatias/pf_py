@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Lista de Cursos</h2>
+  <a href="{% url 'cursos-crear' %}">Crear Curso</a>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Fecha de Inicio</th>
+        <th>Duración (semanas)</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for curso in object_list %}
+        <tr>
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nombre }}</td>
+          <td>{{ curso.descripcion }}</td>
+          <td>{{ curso.fecha_inicio }}</td>
+          <td>{{ curso.duracion_semanas }}</td>
+          <td>
+            <a href="{% url 'cursos-detallar' curso.id %}">Ver</a> |
+            <a href="{% url 'cursos-actualizar' curso.id %}">Actualizar</a> |
+            <a href="{% url 'cursos-borrar' curso.id %}">Borrar</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No hay cursos disponibles.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
