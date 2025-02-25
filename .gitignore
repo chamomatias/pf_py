@@ -1,0 +1,67 @@
+# Byte-compiled / archivos optimizados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos compilados
+*.so
+
+# Distribución / empaquetado
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# Archivos de Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Configuraciones de IDEs y editores
+.vscode/
+.idea/
+
+# Reportes de pruebas y cobertura
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Archivos de instalación
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Variables de entorno y configuraciones sensibles
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Cachés de linters y tipado
+.mypy_cache/
+.pyre/
