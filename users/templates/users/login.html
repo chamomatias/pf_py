@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+
 {% block content %}
   <h2>Iniciar Sesión</h2>
   <form method="post">
-    {% csrf_token %}
+    {% csrf_token %}  <!-- Asegurar que esta línea está presente -->
     {{ form.as_p }}
-    <button type="submit">Ingresar</button>
+    <button type="submit" class="btn btn-primary">Ingresar</button>
   </form>
 {% endblock %}
