@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-
+{% block title %}Hasta Luego{% endblock %}
 {% block content %}
-  <div class="container mt-5">
-    <h2>Sesión cerrada</h2>
-    <p>Has cerrado sesión correctamente.</p>
-    <a href="{% url 'inicio' %}" class="btn btn-primary">Ir a la página de inicio</a>
-  </div>
+<h1>¡Hasta Luego!</h1>
+<p>Has cerrado sesión exitosamente. <a href="{% url 'inicio' %}">Volver a la página de inicio</a></p>
 {% endblock %}

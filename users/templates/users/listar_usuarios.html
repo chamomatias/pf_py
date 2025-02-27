@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% block title %}Lista de Usuarios{% endblock %}
 {% block content %}
-  <h2>Lista de Usuarios</h2>
-  <ul>
+<h1>Usuarios Registrados</h1>
+<ul>
     {% for usuario in object_list %}
-      <li>
-        <a href="{% url 'users-detallar' usuario.id %}">{{ usuario.username }}</a>
-      </li>
+        <li>
+            <a href="{% url 'users-detallar' usuario.pk %}">{{ usuario.username }}</a>
+        </li>
     {% endfor %}
-  </ul>
+</ul>
 {% endblock %}
