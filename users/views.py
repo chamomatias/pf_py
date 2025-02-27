@@ -1,21 +1,13 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from django.views.generic import CreateView, UpdateView, ListView, DetailView, TemplateView
 from django.contrib.auth.models import User
-from django.views.generic import TemplateView
-from users.forms import RegistroUsuarioForm, EditarUsuarioForm
-
-
-
-
-
-
-from django.contrib.auth.views import LoginView
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth import login
-from django.contrib.auth.models import User
+from users.forms import RegistroUsuarioForm, EditarUsuarioForm
 from .models import PerfilUsuario
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class LoginUsuarioView(LoginView):
     template_name = 'users/login.html'
@@ -38,15 +30,13 @@ class LoginUsuarioView(LoginView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
-
 class LogoutUsuarioView(LogoutView):
     template_name = "users/logout.html"  # Página que se mostrará al cerrar sesión
     next_page = reverse_lazy("users-logout-mensaje")  # Redirección tras logout
 
+
 class LogoutMensajeView(TemplateView):
     template_name = "users/logout_mensaje.html"
-
-
 
 
 class RegistroUsuarioView(CreateView):
@@ -54,16 +44,20 @@ class RegistroUsuarioView(CreateView):
     template_name = 'users/registro.html'
     success_url = reverse_lazy('users-login')
 
-class EditarUsuarioView(UpdateView):
+
+# Las siguientes vistas estarán protegidas: solo usuarios autenticados podrán acceder a ellas.
+class EditarUsuarioView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = EditarUsuarioForm
     template_name = 'users/editar_perfil.html'
     success_url = reverse_lazy('users-listar')
 
-class ListarUsuariosView(ListView):
+
+class ListarUsuariosView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'users/listar_usuarios.html'
 
-class DetalleUsuarioView(DetailView):
+
+class DetalleUsuarioView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'users/detallar_usuario.html'

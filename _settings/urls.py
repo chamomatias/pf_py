@@ -17,21 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-
-
+from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('', TemplateView.as_view(template_name='index.html'), name='inicio'),
     path('admin/', admin.site.urls),
     path('cursos/', include('cursos.urls')),
     path('alumnos/', include('alumnos.urls')),
     path('docentes/', include('docentes.urls')),
     path('users/', include('users.urls')),
-
-
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

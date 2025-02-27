@@ -11044,3 +11044,24 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+
+.custom-dropdown-button {
+  background-color: var(--bs-primary); /* Utiliza el color primario de la paleta */
+  border: none;
+  color: var(--bs-white);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem; /* Bordes redondeados */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: inline-block;
+  line-height: inherit; /* Para mantener la alineación vertical */
+}
+
+.custom-dropdown-button:hover,
+.custom-dropdown-button:focus {
+  background-color: #15967d; /* Tono ligeramente más oscuro en hover */
+  transform: scale(1.02);
+  outline: none;
+}
