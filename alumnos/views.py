@@ -3,27 +3,31 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from alumnos.models import Alumnos
 from alumnos.forms import AlumnosForm
 
-class AlumnosListView(ListView):
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+
+class AlumnosListView(LoginRequiredMixin,ListView):
     model = Alumnos
     template_name = 'alumnos/alumnos-listar.html'  # Plantilla para listar alumnos
 
-class AlumnosCreateView(CreateView):
+class AlumnosCreateView(LoginRequiredMixin,CreateView):
     model = Alumnos
     form_class = AlumnosForm
     template_name = 'alumnos/alumnos-form.html'   # Plantilla para crear un alumno
     success_url = reverse_lazy('alumnos-listar')    # Redirige a la lista tras crear
 
-class AlumnosUpdateView(UpdateView):
+class AlumnosUpdateView(LoginRequiredMixin,UpdateView):
     model = Alumnos
     form_class = AlumnosForm
     template_name = 'alumnos/alumnos-form.html'   # Reutiliza la misma plantilla de creación/edición
     success_url = reverse_lazy('alumnos-listar')    # Redirige a la lista tras actualizar
 
-class AlumnosDeleteView(DeleteView):
+class AlumnosDeleteView(LoginRequiredMixin,DeleteView):
     model = Alumnos
     template_name = 'alumnos/alumnos-confirmar-borrar.html'  # Plantilla para confirmar la eliminación
     success_url = reverse_lazy('alumnos-listar')             # Redirige a la lista tras eliminar
 
-class AlumnosDetailView(DetailView):
+class AlumnosDetailView(LoginRequiredMixin,DetailView):
     model = Alumnos
     template_name = 'alumnos/alumnos-detallar.html'  # Plantilla para ver el detalle del alumno

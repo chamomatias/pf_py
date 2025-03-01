@@ -17,6 +17,13 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from .models import PerfilUsuario
 
+
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+
 class LoginUsuarioView(LoginView):
     template_name = 'users/login.html'
 
@@ -39,31 +46,35 @@ class LoginUsuarioView(LoginView):
 
 
 
-class LogoutUsuarioView(LogoutView):
+class LogoutUsuarioView(LoginRequiredMixin, LogoutView):
     template_name = "users/logout.html"  # Página que se mostrará al cerrar sesión
     next_page = reverse_lazy("users-logout-mensaje")  # Redirección tras logout
 
-class LogoutMensajeView(TemplateView):
+class LogoutMensajeView(LoginRequiredMixin, TemplateView):
     template_name = "users/logout_mensaje.html"
 
 
 
 
-class RegistroUsuarioView(CreateView):
+class RegistroUsuarioView(LoginRequiredMixin, CreateView):
     form_class = RegistroUsuarioForm
     template_name = 'users/registro.html'
     success_url = reverse_lazy('users-login')
 
-class EditarUsuarioView(UpdateView):
+class EditarUsuarioView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = EditarUsuarioForm
     template_name = 'users/editar_perfil.html'
     success_url = reverse_lazy('users-listar')
 
-class ListarUsuariosView(ListView):
+class ListarUsuariosView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'users/listar_usuarios.html'
 
-class DetalleUsuarioView(DetailView):
+class DetalleUsuarioView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'users/detallar_usuario.html'
+    
+    
+class SobreMiView(LoginRequiredMixin, TemplateView):
+    template_name = "users/sobre-mi.html"
