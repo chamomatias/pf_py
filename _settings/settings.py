@@ -38,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cursos',
-    'alumnos',
-    'docentes',
-    'users',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -140,8 +138,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-LOGIN_URL = '/users/login/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/usuarios/login/'
+LOGOUT_URL = '/usuarios/logout/'
 
 import os
 

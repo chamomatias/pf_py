@@ -1,57 +1,63 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <title>SL - BD</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
+        <!-- Font Awesome -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     </head>
     <body id="page-top">
-
-
-
-
+        
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    Menú
-                    <i class="fas fa-bars"></i>
+                        data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    Menú <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        {% comment %} <li class="nav-item"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Capacitaciones</a></li>
-                        <li class="nav-item"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">Contacto</a></li> {% endcomment %}
-        
+                        <li class="nav-item">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'users-sobre-mi' %}">Sobre Mí</a>
+                        </li>
+
+
                         <!-- Dropdown para usuario -->
                         <li class="nav-item dropdown">
                             {% if user.is_authenticated %}
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user-circle"></i> {{ user.username }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end bg-light" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="{% url 'users-detallar' user.id %}"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="{% url 'users-logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
-                            </ul>
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> {{ user.username }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end bg-light" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="">
+                                            <i class="fas fa-user"></i> Mi Perfil
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">
+                                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </ul>
                             {% else %}
-                            <a class="nav-link btn btn-outline-light py-2 px-3" href="{% url 'users-login' %}">
-                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                            </a>
+                                <a class="nav-link btn btn-outline-light py-2 px-3" href="{% url 'login' %}">
+                                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                </a>
                             {% endif %}
                         </li>
                     </ul>
@@ -59,47 +65,34 @@
             </div>
         </nav>
 
-
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
+        <!-- Mensajes -->
         {% if messages %}
         <div class="container mt-3">
-          {% for message in messages %}
-            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
-              {{ message }}
-            </div>
-          {% endfor %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-      {% endif %}
-      
+        {% endif %}
+
+        <br>
+        <br>
+        <br>
 
 
+        <!-- Contenido -->
+        <main class="container mt-5">
+            {% block content %}{% endblock %}
+        </main>
 
+        <!-- Footer -->
+        <footer class="text-center py-4 text-white bg-dark">
+            <small>&copy; 2023 - SL BD</small>
+        </footer>
 
-        {% block content %}
-
-
-        {% endblock %}
-        <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
-        </div>
-
-
-        <!-- Bootstrap core JS-->
+        <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{% static 'js/scripts.js'%}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
     </body>
 </html>

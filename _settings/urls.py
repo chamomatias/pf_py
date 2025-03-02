@@ -27,9 +27,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='inicio'),
     path('admin/', admin.site.urls),
     path('cursos/', include('cursos.urls')),
-    path('alumnos/', include('alumnos.urls')),
-    path('docentes/', include('docentes.urls')),
-    path('users/', include('users.urls')),
+    path('usuarios/', include('usuarios.urls')),
 
 
 
