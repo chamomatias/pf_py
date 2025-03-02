@@ -38,7 +38,7 @@
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contacto</a></li>
 
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'users-sobre-mi' %}">Sobre Mí</a>
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded" href="{% url 'sobre-mi' %}">Sobre Mí</a>
                         </li>
 
                         <li class="nav-item mx-0 mx-lg-1">
@@ -56,7 +56,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end bg-light" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-user"></i> Mi Perfil</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" href="{% url 'inicio' %}"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                             </ul>
                             {% else %}
                             <a class="nav-link btn btn-outline-light py-2 px-3" href="{% url 'login' %}">
