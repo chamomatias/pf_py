@@ -1,16 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-        {# Este div sólo está agregado para centrar el formulario en la página usando Bootstrap #}
-        <div class="d-flex justify-content-left">
-    
-            {# Con este div colocamos el título y debajo el formulario usando Bootstrap #}
-            <div class="d-flex flex-column">
-    
-                {# Mensaje personalizado en la vista de Login con estilos de Bootstrap #}
-                <p class="fs-5 ">Has cerrado sesión.</p>
-    
-    
-            </div>
-        </div>
+<div class="container text-center mt-5">
+    <h2>Haz cerrado sesión</h2>
+    <p>Tu sesión ha sido cerrada exitosamente.</p>
+    <a href="{% url 'inicio' %}" class="btn btn-primary mt-3">Volver al Inicio</a>
+</div>
 {% endblock %}

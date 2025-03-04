@@ -1,24 +1,25 @@
 from django.urls import path
-from django.contrib.auth.views import LogoutView
-from django.urls import reverse_lazy
-from usuarios import views
-from usuarios.views import SobreMiView
-
-from usuarios.views import UsuarioCreate, UsuarioList, UsuarioUpdate, UsuarioDelete, mi_perfil
-
-
-
+from usuarios.views import (
+    UsuarioLoginView, UsuarioLogoutView, logout_usuario,
+    UsuarioCreate, UsuarioList, UsuarioUpdate, UsuarioDelete,
+    mi_perfil, SobreMiView
+)
 
 urlpatterns = [
-    path('login/', views.login_request, name="login"),
-    path('logout/', LogoutView.as_view(next_page=reverse_lazy('inicio')), name="users-logout"),
-    path("sobre-mi/", SobreMiView.as_view(), name="sobre-mi"),
+    # Autenticación
+    path("login/", UsuarioLoginView.as_view(), name="users-login"),
+
+    path("logout-confirm/", UsuarioLogoutView.as_view(), name="users-logout-confirm"),
+
+    # Perfil
+    path("perfil/", mi_perfil, name="users-perfil"),
+
+    # CRUD de usuarios
     path("crear/", UsuarioCreate.as_view(), name="users-crear"),
     path("listar/", UsuarioList.as_view(), name="users-listar"),
     path("editar/<int:pk>/", UsuarioUpdate.as_view(), name="users-editar"),
     path("eliminar/<int:pk>/", UsuarioDelete.as_view(), name="users-eliminar"),
-    path("perfil/", mi_perfil, name="users-perfil"),
 
-
+    # Página Sobre Mí
+    path("sobre-mi/", SobreMiView.as_view(), name="sobre-mi"),
 ]
-
