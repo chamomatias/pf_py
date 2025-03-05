@@ -66,3 +66,6 @@ Las contribuciones son bienvenidas. Puedes enviar un PR o reportar issues.
 ## Licencia
 Este proyecto se distribuye bajo la licencia MIT.
 
+## Video explicativo
+https://youtu.be/YsyqZ9g7rKU
+
