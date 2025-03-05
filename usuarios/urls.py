@@ -1,15 +1,16 @@
 from django.urls import path
 from usuarios.views import (
-    UsuarioLoginView, UsuarioLogoutView, logout_usuario,
+    UsuarioLoginView, UsuarioLogoutView,
     UsuarioCreate, UsuarioList, UsuarioUpdate, UsuarioDelete,
-    mi_perfil, SobreMiView
+    mi_perfil, SobreMiView, TemplateView
 )
 
 urlpatterns = [
     # Autenticación
     path("login/", UsuarioLoginView.as_view(), name="users-login"),
+    path("logout/", UsuarioLogoutView.as_view(), name="users-logout"),
+    path("logout-confirm/", TemplateView.as_view(template_name="usuarios/logout-confirm.html"), name="users-logout-confirm"),
 
-    path("logout-confirm/", UsuarioLogoutView.as_view(), name="users-logout-confirm"),
 
     # Perfil
     path("perfil/", mi_perfil, name="users-perfil"),

@@ -38,36 +38,11 @@ class UsuarioLoginView(LoginView):
 # Logout de Usuarios
 # ==========================
 from django.contrib.auth.views import LogoutView
-from django.views.generic import TemplateView
-from django.contrib.auth import logout
-from django.shortcuts import redirect
-from django.contrib import messages
-
-class UsuarioLogoutView(LogoutView):
-    """Cierra la sesión del usuario y lo redirige a la página de 'Sesión Cerrada'."""
-    template_name = "usuarios/users-logout-confirm.html"
-
-def logout_usuario(request):
-    """Maneja el logout y redirige a la página de 'Sesión Cerrada'."""
-    logout(request)
-    return redirect("users-logout-confirm")
-
-
-
-from django.contrib.auth.views import LogoutView
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 class UsuarioLogoutView(LogoutView):
-    """Cierra la sesión del usuario y muestra un mensaje de confirmación."""
-    next_page = reverse_lazy("inicio")
-
-    def dispatch(self, request, *args, **kwargs):
-        messages.success(request, "Has cerrado sesión exitosamente.")
-        return super().dispatch(request, *args, **kwargs)
-
+    """Cierra la sesión y redirige a la página de logout-confirm."""
+    next_page = reverse_lazy("users-logout-confirm")
 
 
 
